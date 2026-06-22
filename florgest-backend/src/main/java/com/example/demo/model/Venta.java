@@ -20,8 +20,27 @@ public class Venta {
     @Column(nullable = false)
     private BigDecimal total;
 
+    @Column(nullable = false)
+    private Long productoId;
+
+    @Column(nullable = false)
+    private Integer cantidad;
+
+    @Column(nullable = false)
+    private String estado; // PENDIENTE, PREPARANDO, ENTREGADO
+
     public Venta() {
         this.fecha = LocalDateTime.now();
+        this.estado = "PENDIENTE";
+    }
+
+    public Venta(String cliente, Long productoId, Integer cantidad, BigDecimal total) {
+        this.cliente = cliente;
+        this.productoId = productoId;
+        this.cantidad = cantidad;
+        this.total = total;
+        this.fecha = LocalDateTime.now();
+        this.estado = "PENDIENTE";
     }
 
     public Long getId() { return id; }
@@ -35,4 +54,13 @@ public class Venta {
 
     public BigDecimal getTotal() { return total; }
     public void setTotal(BigDecimal total) { this.total = total; }
+    
+    public Long getProductoId() { return productoId; }
+    public void setProductoId(Long productoId) { this.productoId = productoId; }
+    
+    public Integer getCantidad() { return cantidad; }
+    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
+    
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }
